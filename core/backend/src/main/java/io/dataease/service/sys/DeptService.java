@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -33,6 +34,23 @@ public class DeptService {
     @Autowired(required = false)
     private ExtDeptMapper extDeptMapper;
 
+    public List<SysDept> deptList(){
+        return allNodes().stream()
+                .map(node -> sysDeptMapper.selectByPrimaryKey(node.getId()))
+                .collect(Collectors.toList());
+    }
+    
+    public List<DeptTreeNode> allDeptTree(){
+        var nodes = allNodes();
+        var allDeptIds =nodes.stream().filter(node->node.getPid()!=0)
+                .map(SimpleTreeNode::getId)
+                .collect(Collectors.toList());
+        nodes.forEach(node-> allDeptIds.removeIf(id->id.equals(node.getPid())));
+        List<DeptTreeNode> res=new ArrayList<>();
+        allDeptIds.forEach(id->res.addAll(searchTree(id)));
+        return res;
+    }
+    
     public List<SysDept> nodesByPid(Long pid) {
         SysDeptExample example = new SysDeptExample();
         SysDeptExample.Criteria criteria = example.createCriteria();
@@ -158,6 +176,7 @@ public class DeptService {
         DeptTreeNode deptTreeNode = new DeptTreeNode();
         deptTreeNode.setId(sysDept.getDeptId());
         deptTreeNode.setLabel(sysDept.getName());
+        deptTreeNode.setCreateTime(sysDept.getCreateTime());
         deptTreeNode.setHasChildren(sysDept.getSubCount() > 0);
         return deptTreeNode;
     }

@@ -135,6 +135,10 @@ export default {
     default_login: 'Normal'
   },
   commons: {
+    dept_pid: 'Parent dept',
+    dept_sub_count: 'Dept sub count',
+    dept_name: 'Dept name',
+    dept_sort: 'Dept sort',
     consanguinity: 'Consanguinity',
     collapse_navigation: 'Collapse navigation',
     operate_cancelled: 'Operation cancelled',
@@ -2562,6 +2566,12 @@ export default {
     day_limit: 'Days cannot be less than 1 and greater than 31'
   },
   dept: {
+    create: 'Create Department',
+    modify: 'Modify Department',
+    input_name: 'Please enter department name',
+    input_id: 'Please enter department ID',
+    input_pid: 'Please select parent department',
+    input_sort: 'Please enter sort number',
     can_not_move_change_sort: 'Cannot move to change sort',
     can_not_move_parent_to_children: 'Parent organization cannot move to its own child node',
     move_success: 'Mobile success',

@@ -14,6 +14,8 @@ public class DeptTreeNode implements Serializable {
     private Long id;
 
     private String label;
+    
+    private Long createTime;
 
     private Boolean hasChildren;
 

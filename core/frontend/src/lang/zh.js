@@ -135,6 +135,10 @@ export default {
     default_login: '普通登录'
   },
   commons: {
+    dept_pid: '上级部门',
+    dept_sub_count: '下级部门数',
+    dept_name: '部门名称',
+    dept_sort: '部门排序号',
     consanguinity: '血缘关系',
     collapse_navigation: '收起导航',
     operate_cancelled: '已取消操作',
@@ -2556,6 +2560,12 @@ export default {
     day_limit: '天不能小于1，大于31'
   },
   dept: {
+    create: '新建组织',
+    modify: '修改组织',
+    input_name: '请输入组织名称',
+    input_id: '请输入组织ID',
+    input_pid: '请输入父组织ID',
+    input_sort: '请输入排序号',
     can_not_move_change_sort: '不能移动以改变排序',
     can_not_move_parent_to_children: '父组织不能移动到自己的子节点下',
     move_success: '移动成功',

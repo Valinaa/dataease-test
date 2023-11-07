@@ -3,6 +3,8 @@ package io.dataease.controller.sys;
 import io.dataease.auth.annotation.SqlInjectValidator;
 import io.dataease.commons.utils.BeanUtils;
 import io.dataease.controller.ResultHolder;
+import io.dataease.controller.sys.request.DeptCreateRequest;
+import io.dataease.controller.sys.request.DeptDeleteRequest;
 import io.dataease.controller.sys.response.DeptNodeResponse;
 import io.dataease.controller.sys.response.DeptTreeNode;
 import io.dataease.plugins.common.base.domain.SysDept;
@@ -61,4 +63,27 @@ public class SysDeptController extends ResultHolder {
         return deptService.searchTree(deptId);
     }
 
+    @GetMapping("/list")
+    public List<SysDept> allDeptIds(){
+        return deptService.deptList();
+    }
+    
+    @GetMapping("/all")
+    public List<DeptTreeNode> nodes(){
+        return deptService.allDeptTree();
+    }
+    @PostMapping
+    public boolean addDept(@RequestBody DeptCreateRequest sysDeptReq){
+        return deptService.add(sysDeptReq);
+    }
+    
+    @PutMapping
+    public int updateDept(@RequestBody DeptCreateRequest sysDeptReq){
+        return deptService.update(sysDeptReq);
+    }
+    
+    @DeleteMapping
+    public int batchDeleteDept(@RequestBody List<DeptDeleteRequest> requests){
+        return deptService.batchDelete(requests);
+    }
 }
